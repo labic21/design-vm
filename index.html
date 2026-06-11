@@ -173,7 +173,9 @@ footer{border-top:1px solid var(--line);padding:56px 0 70px}
 /* work / portfolio */
 .work-grid{display:grid;grid-template-columns:1fr 1fr;gap:34px 30px}
 .work-item{cursor:pointer}
-.work-thumb{aspect-ratio:16/9;background:#efefef;position:relative;overflow:hidden;border:1px solid var(--line);display:block;transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s cubic-bezier(.2,.7,.2,1),border-color .25s}.work-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.work-thumb{aspect-ratio:16/9;background:#efefef;position:relative;overflow:hidden;border:1px solid var(--line);display:block;transition:border-color .45s cubic-bezier(.2,.7,.2,1)}.work-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .9s cubic-bezier(.16,.84,.24,1)}
+.work-thumb::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(to top,rgba(10,10,10,.52),rgba(10,10,10,0) 58%);opacity:0;transition:opacity .5s ease;pointer-events:none}
+.work-thumb::after{content:"VIEW ↗";position:absolute;left:18px;bottom:15px;z-index:2;font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#fff;opacity:0;transform:translateY(10px);transition:opacity .45s ease,transform .55s cubic-bezier(.2,.7,.2,1);pointer-events:none}
 .work-thumb .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
   transition:transform .5s cubic-bezier(.2,.7,.2,1)}
 .work-thumb .ph-cat{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gray-2)}
@@ -182,7 +184,10 @@ footer{border-top:1px solid var(--line);padding:56px 0 70px}
 .work-item:nth-child(4n+3) .work-thumb{background:#e9e9e9}
 .work-item:nth-child(4n) .work-thumb{background:#efefef}
 
-.work-item:hover .work-thumb{transform:translateY(-10px);box-shadow:0 22px 40px -12px rgba(0,0,0,.22),0 8px 16px -8px rgba(0,0,0,.12);border-color:transparent}
+.work-item:hover .work-thumb{border-color:var(--ink)}
+.work-item:hover .work-thumb img{transform:scale(1.05)}
+.work-item:hover .work-thumb::before{opacity:1}
+.work-item:hover .work-thumb::after{opacity:1;transform:translateY(0)}
 .work-meta{display:flex;justify-content:space-between;align-items:baseline;
   font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
   color:var(--gray-2);margin:18px 0 8px}
