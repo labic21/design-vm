@@ -53,7 +53,21 @@ header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.82);
   font-size:17px;cursor:pointer}
 
 /* hero */
-.hero{padding:140px 0 130px;border-bottom:1px solid var(--line)}
+.hero{padding:140px 0 130px;border-bottom:1px solid var(--line);position:relative}
+.hero .wrap{position:relative}
+.hero-toggle{position:absolute;top:0;right:0;display:flex;align-items:center;gap:16px;z-index:2}
+.hero-toggle .st-label{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--gray-2);min-width:62px;text-align:right;transition:color .4s}
+.hero-toggle .track{width:74px;height:38px;border-radius:24px;position:relative;
+  background:linear-gradient(135deg,#7F77DD,#D4537E);
+  box-shadow:0 6px 16px rgba(127,119,221,.45),inset 0 1px 2px rgba(255,255,255,.5),inset 0 -3px 6px rgba(0,0,0,.22);
+  transition:background .5s ease,box-shadow .5s ease}
+.hero-toggle .knob{position:absolute;top:4px;left:40px;width:30px;height:30px;border-radius:50%;
+  background:linear-gradient(180deg,#fff,#e8e8f5);
+  box-shadow:0 3px 6px rgba(0,0,0,.35),inset 0 1px 1px #fff;
+  transition:left .45s cubic-bezier(.4,.1,.2,1),background .5s}
+.hero-toggle.off .track{background:#d8d8d8;box-shadow:inset 0 2px 5px rgba(0,0,0,.25)}
+.hero-toggle.off .knob{left:4px;background:linear-gradient(180deg,#fff,#cfcfcf);box-shadow:0 2px 3px rgba(0,0,0,.25)}
+@media(max-width:640px){.hero-toggle{position:static;margin-bottom:30px;justify-content:flex-start}}
 .hero .label{margin-bottom:34px}
 .hero h1{font-size:clamp(40px,7.4vw,92px);max-width:14ch;margin-bottom:38px}
 .hero .lead{font-size:clamp(16px,2vw,19px);color:var(--gray-1);max-width:760px;
@@ -239,6 +253,10 @@ footer{border-top:1px solid var(--line);padding:56px 0 70px}
 <!-- HERO -->
 <section class="hero">
   <div class="wrap">
+    <div class="hero-toggle" id="heroToggle">
+      <span class="st-label" id="stLabel">ON</span>
+      <div class="track"><div class="knob"></div></div>
+    </div>
     <span class="label">Design Subscription</span>
     <h1>필요할 때만 켜고, 안 쓸 땐 멈추는 디자인 구독.</h1>
     <p class="lead">매달 결제하는 정규직 디자이너 대신. 이번 달에 쓸 디자인이 단 3개뿐이라면,<br>그만큼만 쓰고 <b>일시정지(Pause)</b> 하세요. 남은 기간은 다음 달로 이어집니다.<br>낭비되는 구독료는 없습니다.</p>
@@ -516,6 +534,24 @@ document.querySelectorAll('.faq button').forEach(function(b){
     es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
   },{threshold:.12});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+})();
+(function(){
+  var wrap=document.getElementById('heroToggle');
+  var label=document.getElementById('stLabel');
+  if(!wrap||!label)return;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduce)return;
+  var on=true;
+  setInterval(function(){
+    on=!on;
+    if(on){
+      wrap.classList.remove('off');
+      label.textContent='ON';label.style.color='var(--ink)';
+    }else{
+      wrap.classList.add('off');
+      label.textContent='PAUSED';label.style.color='var(--gray-2)';
+    }
+  },2600);
 })();
 </script>
 </body>
