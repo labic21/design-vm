@@ -15,10 +15,11 @@
 html{scroll-behavior:smooth}
 body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);color:var(--ink);line-height:1.85;-webkit-font-smoothing:antialiased}
 .wrap{max-width:760px;margin:0 auto;padding:0 28px}
-.lnav{border-bottom:1px solid var(--line);padding:20px 0;position:sticky;top:0;background:rgba(255,255,255,0.88);backdrop-filter:blur(10px);z-index:10}
-.lnav .wrap{max-width:1080px;display:flex;align-items:center;justify-content:space-between}
+.lnav{border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(255,255,255,0.88);backdrop-filter:blur(10px);z-index:10}
+.lnav .wrap{max-width:1080px;display:flex;align-items:center;justify-content:space-between;height:68px}
 .brand{display:inline-flex;align-items:center;gap:10px;font-weight:800;font-size:16px;color:var(--ink);text-decoration:none;letter-spacing:-0.02em}
 .brand .logo-mark{height:21px;width:auto;color:var(--ink);display:block;flex-shrink:0}
+.brand .logo-text{font-weight:800;font-size:16px;letter-spacing:-0.02em;line-height:1}
 .home{font-size:12px;color:var(--gray-1);text-decoration:none;font-family:'Space Mono',monospace;letter-spacing:0.04em}
 .home:hover{color:var(--ink)}
 .doc{padding:64px 0 80px}
@@ -53,7 +54,7 @@ body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);colo
 <path fill-rule="evenodd" fill="currentColor" fill-opacity="1" d="M 641.25 532.5 L 733.25 596.5 L 715.25 616.5 L 642.25 564.5 L 569.25 616.5 L 553.25 594.5 Z M 641.25 532.5 "/>
 <path fill-rule="evenodd" fill="currentColor" fill-opacity="1" d="M 669.25 771.5 L 615.601562 771.5 L 615.601562 700.5 L 669.25 700.5 Z M 729.25 700.5 L 729.25 676.5 L 556.25 676.5 L 556.25 700.5 L 588.601562 700.5 L 588.601562 771.5 L 556.25 771.5 L 556.25 796.5 L 729.25 796.5 L 729.25 771.5 L 696.25 771.5 L 696.25 700.5 Z M 729.25 700.5 "/>
 <path fill-rule="evenodd" fill="currentColor" fill-opacity="1" d="M 329.75 490.5 L 501.75 490.5 L 501.75 515.5 L 356.75 515.5 L 356.75 591.5 L 501.75 591.5 L 501.75 616.5 L 329.75 616.5 Z M 329.75 490.5 "/>
-<path fill-rule="evenodd" fill="currentColor" fill-opacity="1" d="M 784.75 675.5 C 832.410156 675.832031 880.089844 676.167969 927.75 676.5 L 927.75 796.5 L 900.75 796.5 L 900.75 701.5 C 862.085938 701.167969 823.414062 700.832031 784.75 700.5 Z M 784.75 675.5 "/></svg><span>디자인자판기</span></a>
+<path fill-rule="evenodd" fill="currentColor" fill-opacity="1" d="M 784.75 675.5 C 832.410156 675.832031 880.089844 676.167969 927.75 676.5 L 927.75 796.5 L 900.75 796.5 L 900.75 701.5 C 862.085938 701.167969 823.414062 700.832031 784.75 700.5 Z M 784.75 675.5 "/></svg><span class="logo-text">디자인자판기</span></a>
     <a href="index.html" class="home">← 홈으로</a>
   </div>
 </nav>
