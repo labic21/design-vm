@@ -95,15 +95,26 @@ section{padding:120px 0}
 .menu-col.no .m-list li{color:var(--gray-2);font-weight:600}
 
 /* pricing */
-.price{display:grid;grid-template-columns:1.15fr 1fr;border:1px solid var(--ink)}
-.plan{padding:52px 48px}
-.plan.pause{border-left:1px solid var(--ink);background:#fafafa}
+.price{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--ink)}
+.plan{padding:48px 32px;border-left:1px solid var(--ink);display:flex;flex-direction:column}
+.plan .feat{flex:1}
+.plan:first-child{border-left:none}
+.plan.featured{background:var(--ink);color:#fff}
+.plan.featured .pname,.plan.featured .amount .num,.plan.featured .feat li{color:#fff}
+.plan.featured .ptag{color:#fff;border-color:rgba(255,255,255,.4)}
+.plan.featured .amount .per,.plan.featured .amount .cur{color:var(--gray-2)}
+.plan.featured .feat li{border-top-color:rgba(255,255,255,.18)}
+.plan.featured .feat li:last-child{border-bottom-color:rgba(255,255,255,.18)}
+.plan.featured .btn-fill{background:#fff;color:var(--ink)}
+.plan.featured .btn-fill:hover{background:#eee}
+.plan.pause{grid-column:1/-1;border-left:none;border-top:1px solid var(--ink);background:#fafafa;
+  display:grid;grid-template-columns:1fr 1.2fr;gap:48px;align-items:center}
 .plan .ptop{display:flex;justify-content:space-between;align-items:center;margin-bottom:36px}
 .plan .pname{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase}
 .plan .ptag{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--gray-1);
   border:1px solid var(--line-2);padding:5px 12px}
-.amount{display:flex;align-items:baseline;gap:8px;margin-bottom:44px}
-.amount .num{font-size:clamp(44px,6vw,68px);font-weight:800;letter-spacing:-.04em;line-height:1}
+.amount{display:flex;align-items:baseline;gap:8px;margin-bottom:44px;flex-wrap:wrap}
+.amount .num{font-size:clamp(30px,3.2vw,42px);font-weight:800;letter-spacing:-.04em;line-height:1;white-space:nowrap}
 .amount .per{font-size:16px;color:var(--gray-1)}
 .amount .cur{font-family:var(--mono);font-size:14px;color:var(--gray-2);align-self:flex-start;margin-top:6px}
 .feat{list-style:none;margin-bottom:42px}
@@ -162,8 +173,9 @@ footer{border-top:1px solid var(--line);padding:56px 0 70px}
   .menu-col:first-child{padding:0 0 50px}
   .menu-col.no{padding-top:50px;border-top:1px solid var(--line)}
   .price{grid-template-columns:1fr}
-  .plan{padding:40px 30px}
-  .plan.pause{border-left:none;border-top:1px solid var(--ink)}
+  .plan{padding:40px 30px;border-left:none;border-top:1px solid var(--ink)}
+  .plan:first-child{border-top:none}
+  .plan.pause{border-left:none;border-top:1px solid var(--ink);grid-template-columns:1fr;gap:24px}
   .sec-head{flex-direction:column;align-items:flex-start;gap:14px}
 }
 @media(prefers-reduced-motion:reduce){
@@ -329,8 +341,26 @@ footer{border-top:1px solid var(--line);padding:56px 0 70px}
     <div class="price reveal">
       <div class="plan">
         <div class="ptop">
-          <span class="pname">Standard Plan</span>
+          <span class="pname">Lite Plan</span>
           <span class="ptag">월 1회 구독</span>
+        </div>
+        <div class="amount">
+          <span class="cur">KRW</span>
+          <span class="num">900,000</span>
+          <span class="per">/ 월</span>
+        </div>
+        <ul class="feat">
+          <li>한 번에 1개의 작업 진행 (큐 방식)</li>
+          <li>영업일 3~4일 내 초안 인도</li>
+          <li>수정 횟수 제한 없음</li>
+          <li>1인 사업자 · 초기 스타트업 적합</li>
+        </ul>
+        <a href="mailto:hello@design-vm.com" class="btn btn-fill">구독 시작하기</a>
+      </div>
+      <div class="plan featured">
+        <div class="ptop">
+          <span class="pname">Standard Plan</span>
+          <span class="ptag">가장 인기</span>
         </div>
         <div class="amount">
           <span class="cur">KRW</span>
@@ -341,21 +371,44 @@ footer{border-top:1px solid var(--line);padding:56px 0 70px}
           <li>한 번에 1개의 작업 진행 (큐 방식)</li>
           <li>평균 48시간 내 초안 인도</li>
           <li>수정 횟수 제한 없음</li>
+          <li>편집 가능한 원본 파일 전체 제공</li>
+        </ul>
+        <a href="mailto:hello@design-vm.com" class="btn btn-fill">구독 시작하기</a>
+      </div>
+      <div class="plan">
+        <div class="ptop">
+          <span class="pname">Pro Plan</span>
+          <span class="ptag">동시 2건</span>
+        </div>
+        <div class="amount">
+          <span class="cur">KRW</span>
+          <span class="num">3,200,000</span>
+          <span class="per">/ 월</span>
+        </div>
+        <ul class="feat">
+          <li>한 번에 2개의 작업 동시 진행</li>
+          <li>최우선 순위 · 24~48시간 인도</li>
+          <li>수정 횟수 제한 없음</li>
+          <li>브랜드 가이드 · 디자인 시스템 관리</li>
         </ul>
         <a href="mailto:hello@design-vm.com" class="btn btn-fill">구독 시작하기</a>
       </div>
       <div class="plan pause">
-        <div class="ptop">
-          <span class="pname">Pause</span>
-          <span class="ptag">특별 혜택</span>
+        <div>
+          <div class="ptop">
+            <span class="pname">Pause</span>
+            <span class="ptag">모든 플랜 공통</span>
+          </div>
+          <h3>쓴 만큼만. 나머지는 멈춰두세요.</h3>
         </div>
-        <h3>쓴 만큼만. 나머지는 멈춰두세요.</h3>
-        <p>이번 달 작업이 끝났다면 구독을 일시정지하세요. 남은 기간은 사라지지 않고 그대로 보관됩니다.</p>
-        <ul class="feat">
-          <li>작업 완료 후 언제든 일시정지(Pause)</li>
-          <li>남은 기간 안전하게 보관</li>
-          <li>필요할 때 다시 재개(Resume)</li>
-        </ul>
+        <div>
+          <p>이번 달 작업이 끝났다면 구독을 일시정지하세요. 남은 기간은 사라지지 않고 그대로 보관됩니다.</p>
+          <ul class="feat">
+            <li>작업 완료 후 언제든 일시정지(Pause)</li>
+            <li>남은 기간 안전하게 보관</li>
+            <li>필요할 때 다시 재개(Resume)</li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
