@@ -54,12 +54,12 @@ header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.82);
 
 /* hero */
 .hero{padding:140px 0 130px;border-bottom:1px solid var(--line);position:relative}
-.hero-dim{position:absolute;inset:0;background:var(--ink);opacity:0;pointer-events:none;z-index:1;transition:opacity 1.2s ease-in-out}
-.hero-dim.dim{opacity:.5}
+.hero-dim{position:absolute;inset:0;background:var(--ink);opacity:0;pointer-events:none;z-index:1;transition:opacity .5s ease-out}
+.hero-dim.dim{opacity:.5;transition:opacity 1.2s ease-in-out}
 @media(prefers-reduced-motion:reduce){.hero-dim{transition:none;opacity:0!important}}
 .hero .wrap{position:relative}
-.hero-toggle{position:absolute;top:0;right:0;display:flex;align-items:center;gap:16px;z-index:2}
-.hero-toggle .st-label{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--gray-2);min-width:62px;text-align:right;transition:color .4s}
+.hero-toggle{position:absolute;top:0;right:0;display:flex;align-items:center;gap:16px}
+.hero-toggle .st-label{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--gray-2);min-width:62px;text-align:left;transition:color .4s}
 .hero-toggle .track{width:74px;height:38px;border-radius:24px;position:relative;
   background:linear-gradient(135deg,#7F77DD,#D4537E);
   box-shadow:0 6px 16px rgba(127,119,221,.45),inset 0 1px 2px rgba(255,255,255,.5),inset 0 -3px 6px rgba(0,0,0,.22);
@@ -259,8 +259,8 @@ footer{border-top:1px solid var(--line);padding:56px 0 70px}
   <div class="hero-dim" id="heroDim"></div>
   <div class="wrap">
     <div class="hero-toggle" id="heroToggle">
-      <span class="st-label" id="stLabel">ON</span>
       <div class="track"><div class="knob"></div></div>
+      <span class="st-label" id="stLabel">ON</span>
     </div>
     <span class="label">Design Subscription</span>
     <h1>필요할 때만 켜고, 안 쓸 땐 멈추는 디자인 구독.</h1>
