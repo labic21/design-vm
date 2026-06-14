@@ -54,6 +54,9 @@ header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.82);
 
 /* hero */
 .hero{padding:140px 0 130px;border-bottom:1px solid var(--line);position:relative}
+.hero-dim{position:absolute;inset:0;background:var(--ink);opacity:0;pointer-events:none;z-index:1;transition:opacity 1.2s ease-in-out}
+.hero-dim.dim{opacity:.5}
+@media(prefers-reduced-motion:reduce){.hero-dim{transition:none;opacity:0!important}}
 .hero .wrap{position:relative}
 .hero-toggle{position:absolute;top:0;right:0;display:flex;align-items:center;gap:16px;z-index:2}
 .hero-toggle .st-label{font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--gray-2);min-width:62px;text-align:right;transition:color .4s}
@@ -253,6 +256,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 70px}
 
 <!-- HERO -->
 <section class="hero">
+  <div class="hero-dim" id="heroDim"></div>
   <div class="wrap">
     <div class="hero-toggle" id="heroToggle">
       <span class="st-label" id="stLabel">ON</span>
@@ -540,20 +544,26 @@ document.querySelectorAll('.faq button').forEach(function(b){
 (function(){
   var wrap=document.getElementById('heroToggle');
   var label=document.getElementById('stLabel');
+  var dim=document.getElementById('heroDim');
   if(!wrap||!label)return;
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(reduce)return;
   var on=true;
-  setInterval(function(){
+  var ON_MS=6000, OFF_MS=2500;
+  function tick(){
     on=!on;
     if(on){
       wrap.classList.remove('off');
       label.textContent='ON';label.style.color='var(--ink)';
+      if(dim)dim.classList.remove('dim');
     }else{
       wrap.classList.add('off');
       label.textContent='PAUSED';label.style.color='var(--gray-2)';
+      if(dim)dim.classList.add('dim');
     }
-  },2600);
+    setTimeout(tick, on ? ON_MS : OFF_MS);
+  }
+  setTimeout(tick, ON_MS);
 })();
 </script>
 </body>
