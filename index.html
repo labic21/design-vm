@@ -258,11 +258,11 @@ footer{border-top:1px solid var(--line);padding:56px 0 70px}
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-dim" id="heroDim"></div>
+  <div class="hero-dim dim" id="heroDim"></div>
   <div class="wrap">
-    <div class="hero-toggle" id="heroToggle">
+    <div class="hero-toggle off" id="heroToggle">
       <div class="track"><div class="knob"></div></div>
-      <span class="st-label" id="stLabel">ON</span>
+      <span class="st-label" id="stLabel">PAUSED</span>
     </div>
     <span class="label">Design Subscription</span>
     <h1>필요할 때만 켜고, 안 쓸 땐 멈추는 디자인 구독.</h1>
@@ -547,7 +547,7 @@ document.querySelectorAll('.faq button').forEach(function(b){
   if(!wrap||!label)return;
   var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(reduce)return;
-  var on=true;
+  var on=false;
   var ON_MS=6000, OFF_MS=2500;
   function tick(){
     on=!on;
@@ -562,7 +562,7 @@ document.querySelectorAll('.faq button').forEach(function(b){
     }
     setTimeout(tick, on ? ON_MS : OFF_MS);
   }
-  setTimeout(tick, ON_MS);
+  setTimeout(tick, OFF_MS);
 })();
 // Toss Payments Integration
 var tossPayments;
