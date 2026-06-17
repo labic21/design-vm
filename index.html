@@ -367,56 +367,56 @@ footer{border-top:1px solid var(--line);padding:56px 0 70px}
       <div class="plan">
         <div class="ptop">
           <span class="pname">Lite Plan</span>
-          <span class="ptag">월 1회 구독</span>
+          <span class="ptag">기본</span>
         </div>
         <div class="amount">
           <span class="cur">KRW</span>
-          <span class="num">900,000</span>
+          <span class="num">149,000</span>
           <span class="per">/ 월</span>
         </div>
         <ul class="feat">
-          <li>한 번에 1개의 작업 진행 (큐 방식)</li>
-          <li>영업일 3~4일 내 초안 인도</li>
+          <li>한 번에 1개의 작업만 진행</li>
+          <li>영업일 기준 1~2일 안에 인도</li>
           <li>수정 횟수 제한 없음</li>
-          <li>1인 사업자 · 초기 스타트업 적합</li>
+          <li>트렐로 기반 협업</li>
         </ul>
-        <a href="mailto:labic21@gmail.com?subject=[디자인자판기] 구독 문의" class="btn btn-fill">구독 시작하기</a>
+        <button class="btn btn-fill" onclick="requestTossPayment('lite', 149000, 'Design VM - Lite Plan')">구독 시작하기</button>
       </div>
       <div class="plan featured">
         <div class="ptop">
           <span class="pname">Standard Plan</span>
-          <span class="ptag">가장 인기</span>
+          <span class="ptag">인기</span>
         </div>
         <div class="amount">
           <span class="cur">KRW</span>
-          <span class="num">1,900,000</span>
-          <span class="per">/ 월</span>
-        </div>
-        <ul class="feat">
-          <li>한 번에 1개의 작업 진행 (큐 방식)</li>
-          <li>평균 48시간 내 초안 인도</li>
-          <li>수정 횟수 제한 없음</li>
-          <li>편집 가능한 원본 파일 전체 제공</li>
-        </ul>
-        <a href="mailto:labic21@gmail.com?subject=[디자인자판기] 구독 문의" class="btn btn-fill">구독 시작하기</a>
-      </div>
-      <div class="plan">
-        <div class="ptop">
-          <span class="pname">Pro Plan</span>
-          <span class="ptag">동시 2건</span>
-        </div>
-        <div class="amount">
-          <span class="cur">KRW</span>
-          <span class="num">3,200,000</span>
+          <span class="num">349,000</span>
           <span class="per">/ 월</span>
         </div>
         <ul class="feat">
           <li>한 번에 2개의 작업 동시 진행</li>
-          <li>최우선 순위 · 24~48시간 인도</li>
+          <li>영업일 기준 1~2일 안에 인도</li>
           <li>수정 횟수 제한 없음</li>
-          <li>브랜드 가이드 · 디자인 시스템 관리</li>
+          <li>슬랙/이메일 우선 지원</li>
         </ul>
-        <a href="mailto:labic21@gmail.com?subject=[디자인자판기] 구독 문의" class="btn btn-fill">구독 시작하기</a>
+        <button class="btn btn-fill" onclick="requestTossPayment('standard', 349000, 'Design VM - Standard Plan')">구독 시작하기</button>
+      </div>
+      <div class="plan">
+        <div class="ptop">
+          <span class="pname">Pro Plan</span>
+          <span class="ptag">프리미엄</span>
+        </div>
+        <div class="amount">
+          <span class="cur">KRW</span>
+          <span class="num">699,000</span>
+          <span class="per">/ 월</span>
+        </div>
+        <ul class="feat">
+          <li>한 번에 3개의 작업 동시 진행</li>
+          <li>최우선 순위 · 24시간 인도</li>
+          <li>수정 횟수 제한 없음</li>
+          <li>전용 매니저 & 우선 지원</li>
+        </ul>
+        <button class="btn btn-fill" onclick="requestTossPayment('pro', 699000, 'Design VM - Pro Plan')">구독 시작하기</button>
       </div>
       <div class="plan pause">
         <div>
@@ -565,6 +565,46 @@ document.querySelectorAll('.faq button').forEach(function(b){
   }
   setTimeout(tick, ON_MS);
 })();
+// Toss Payments Integration
+var tossPayments;
+var TOSS_CLIENT_KEY = 'YOUR_TOSS_CLIENT_KEY_HERE'; // ← 여기에 클라이언트 키 입력
+
+async function requestTossPayment(planType, amount, planName) {
+  // Toss SDK 로드
+  if (!tossPayments) {
+    const TossPaymentsModule = await loadTossPayments();
+    tossPayments = TossPaymentsModule.TossPayments(TOSS_CLIENT_KEY);
+  }
+
+  const orderId = 'order_' + Date.now();
+  const orderName = planName + ' (' + amount.toLocaleString() + '원)';
+  
+  try {
+    const response = await tossPayments.requestPayment('카드', {
+      amount: amount,
+      orderId: orderId,
+      orderName: orderName,
+      customerEmail: 'customer@design-vm.com',
+      successUrl: window.location.origin + '/?payment=success&orderId=' + orderId,
+      failUrl: window.location.origin + '/?payment=fail'
+    });
+  } catch (error) {
+    console.error('결제 요청 실패:', error);
+    alert('결제 요청 중 오류가 발생했습니다. 다시 시도해주세요.');
+  }
+}
+
+function loadTossPayments() {
+  return new Promise((resolve) => {
+    const script = document.createElement('script');
+    script.src = 'https://js.tosspayments.com/v1';
+    script.async = true;
+    script.onload = () => {
+      resolve(window);
+    };
+    document.head.appendChild(script);
+  });
+}
 </script>
 </body>
 </html>
