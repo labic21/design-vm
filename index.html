@@ -644,7 +644,7 @@ document.addEventListener('DOMContentLoaded',function(){
       try{
         var s=frame.contentDocument.createElement('style');
         if(frame.src.indexOf('/rival')!==-1){
-          s.textContent='html,body{scrollbar-width:thin;scrollbar-color:#2C3850 #0E1522}::-webkit-scrollbar{width:8px;background:#0E1522}::-webkit-scrollbar-thumb{background:#2C3850;border-radius:4px}::-webkit-scrollbar-track{background:#0E1522}';
+          s.textContent='html,body{scrollbar-width:thin;scrollbar-color:#2C3850 #0E1522;border:none}html::-webkit-scrollbar,body::-webkit-scrollbar{width:8px;background:#0E1522}html::-webkit-scrollbar-track,body::-webkit-scrollbar-track{background:#0E1522}html::-webkit-scrollbar-track-piece,body::-webkit-scrollbar-track-piece{background:#0E1522}html::-webkit-scrollbar-thumb,body::-webkit-scrollbar-thumb{background:#2C3850;border-radius:4px}html::-webkit-scrollbar-corner,body::-webkit-scrollbar-corner{background:#0E1522}';
         }else{
           s.textContent='html,body{scrollbar-width:none;-ms-overflow-style:none}::-webkit-scrollbar{display:none}';
         }
