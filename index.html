@@ -644,7 +644,7 @@ document.addEventListener('DOMContentLoaded',function(){
       try{
         var s=frame.contentDocument.createElement('style');
         if(frame.src.indexOf('/rival')!==-1){
-          s.textContent='html,body{scrollbar-width:thin;scrollbar-color:#2C3850 transparent}::-webkit-scrollbar{width:8px}::-webkit-scrollbar-thumb{background:#2C3850;border-radius:4px}::-webkit-scrollbar-track{background:transparent}';
+          s.textContent='html,body{scrollbar-width:thin;scrollbar-color:#2C3850 #0E1522}::-webkit-scrollbar{width:8px;background:#0E1522}::-webkit-scrollbar-thumb{background:#2C3850;border-radius:4px}::-webkit-scrollbar-track{background:#0E1522}';
         }else{
           s.textContent='html,body{scrollbar-width:none;-ms-overflow-style:none}::-webkit-scrollbar{display:none}';
         }
