@@ -638,6 +638,13 @@ document.addEventListener('DOMContentLoaded',function(){
 
   function open(src){
     frame.src=src;
+    frame.onload=function(){
+      try{
+        var s=frame.contentDocument.createElement('style');
+        s.textContent='html,body{scrollbar-width:none;-ms-overflow-style:none}::-webkit-scrollbar{display:none}';
+        frame.contentDocument.head.appendChild(s);
+      }catch(e){}
+    };
     overlay.classList.add('open');
     overlay.setAttribute('aria-hidden','false');
     document.body.style.overflow='hidden';
