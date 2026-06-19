@@ -235,15 +235,19 @@ footer{border-top:1px solid var(--line);padding:56px 0 70px}
 /* iframe modal */
 .ifm-overlay{position:fixed;inset:0;z-index:200;background:rgba(10,10,10,.82);
   display:flex;align-items:center;justify-content:center;
-  overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none;
+  overflow:hidden;scrollbar-width:thin;scrollbar-color:#2C3850 #0E1522;
   visibility:hidden;opacity:0;transition:opacity .28s,visibility .28s}
-.ifm-overlay::-webkit-scrollbar{display:none}
+.ifm-overlay::-webkit-scrollbar{width:8px;background:#0E1522}
+.ifm-overlay::-webkit-scrollbar-track{background:#0E1522}
+.ifm-overlay::-webkit-scrollbar-thumb{background:#2C3850;border-radius:4px}
 .ifm-overlay.open{visibility:visible;opacity:1}
 .ifm-box{width:min(1200px,96vw);height:90vh;background:#fff;
-  display:flex;flex-direction:column;overflow-y:auto;
-  scrollbar-width:none;-ms-overflow-style:none;
+  display:flex;flex-direction:column;overflow:hidden;
+  scrollbar-width:thin;scrollbar-color:#2C3850 #0E1522;
   transform:translateY(18px);transition:transform .28s cubic-bezier(.2,.7,.2,1)}
-.ifm-box::-webkit-scrollbar{display:none}
+.ifm-box::-webkit-scrollbar{width:8px;background:#0E1522}
+.ifm-box::-webkit-scrollbar-track{background:#0E1522}
+.ifm-box::-webkit-scrollbar-thumb{background:#2C3850;border-radius:4px}
 .ifm-overlay.open .ifm-box{transform:translateY(0)}
 .ifm-close{position:fixed;top:20px;right:20px;z-index:201;
   width:44px;height:44px;border-radius:50%;border:none;cursor:pointer;
