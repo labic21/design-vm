@@ -643,7 +643,11 @@ document.addEventListener('DOMContentLoaded',function(){
     frame.onload=function(){
       try{
         var s=frame.contentDocument.createElement('style');
-        s.textContent='html,body{scrollbar-width:none;-ms-overflow-style:none}::-webkit-scrollbar{display:none}';
+        if(frame.src.indexOf('/rival')!==-1){
+          s.textContent='::-webkit-scrollbar{width:8px}::-webkit-scrollbar-thumb{background:#2C3850;border-radius:4px}::-webkit-scrollbar-track{background:transparent}';
+        }else{
+          s.textContent='html,body{scrollbar-width:none;-ms-overflow-style:none}::-webkit-scrollbar{display:none}';
+        }
         frame.contentDocument.head.appendChild(s);
       }catch(e){}
     };
