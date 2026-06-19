@@ -238,7 +238,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 70px}
   visibility:hidden;opacity:0;transition:opacity .28s,visibility .28s}
 .ifm-overlay.open{visibility:visible;opacity:1}
 .ifm-box{width:min(1200px,96vw);height:90vh;background:#fff;
-  display:flex;flex-direction:column;overflow:hidden;
+  display:flex;flex-direction:column;overflow-y:auto;
   scrollbar-width:none;-ms-overflow-style:none;
   transform:translateY(18px);transition:transform .28s cubic-bezier(.2,.7,.2,1)}
 .ifm-box::-webkit-scrollbar{display:none}
@@ -249,7 +249,7 @@ footer{border-top:1px solid var(--line);padding:56px 0 70px}
   display:flex;align-items:center;justify-content:center;
   transition:background .18s}
 .ifm-close:hover{background:rgba(0,0,0,.78)}
-.ifm-frame{flex:1;border:none;width:100%;display:block;scrollbar-width:none;-ms-overflow-style:none}
+.ifm-frame{flex:1;min-height:0;border:none;width:100%;display:block;scrollbar-width:none;-ms-overflow-style:none}
 .ifm-frame::-webkit-scrollbar{display:none}
 @media(max-width:640px){
   .ifm-box{width:100vw;height:100dvh;height:100vh}
@@ -638,13 +638,6 @@ document.addEventListener('DOMContentLoaded',function(){
 
   function open(src){
     frame.src=src;
-    frame.onload=function(){
-      try{
-        var s=frame.contentDocument.createElement('style');
-        s.textContent='html,body{scrollbar-width:none;-ms-overflow-style:none}::-webkit-scrollbar{display:none}';
-        frame.contentDocument.head.appendChild(s);
-      }catch(e){}
-    };
     overlay.classList.add('open');
     overlay.setAttribute('aria-hidden','false');
     document.body.style.overflow='hidden';
